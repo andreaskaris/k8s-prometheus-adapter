@@ -196,6 +196,7 @@ func (h *queryClient) Query(ctx context.Context, t model.Time, query Selector) (
 		vals.Set("timeout", model.Duration(timeout).String())
 	}
 
+	klog.Warningf("h.verb: %v, queryURL: %v, vals: %v", h.verb, queryURL, vals)
 	res, err := h.api.Do(ctx, h.verb, queryURL, vals)
 	if err != nil {
 		return QueryResult{}, err
